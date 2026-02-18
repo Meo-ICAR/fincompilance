@@ -69,7 +69,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - Use the `database-query` tool when you only need to read from the database.
 - Use the `database-schema` tool to inspect table structure before writing migrations or models.
 
-## Reading Browser Logs With the `browser-logs` Tool
+## Reading Browser Logs With the `browser-logs` Tool.
 
 - You can read browser logs, errors, and exceptions using the `browser-logs` tool from Boost.
 - Only recent browser logs will be useful - ignore old logs.
