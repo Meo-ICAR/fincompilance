@@ -8,11 +8,11 @@ use App\Filament\Resources\AmlWatchlistHits\Pages\ListAmlWatchlistHits;
 use App\Filament\Resources\AmlWatchlistHits\Schemas\AmlWatchlistHitForm;
 use App\Filament\Resources\AmlWatchlistHits\Tables\AmlWatchlistHitsTable;
 use App\Models\AmlWatchlistHit;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use BackedEnum;
 use UnitEnum;
 
 class AmlWatchlistHitResource extends Resource

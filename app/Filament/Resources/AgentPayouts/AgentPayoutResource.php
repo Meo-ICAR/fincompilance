@@ -8,11 +8,11 @@ use App\Filament\Resources\AgentPayouts\Pages\ListAgentPayouts;
 use App\Filament\Resources\AgentPayouts\Schemas\AgentPayoutForm;
 use App\Filament\Resources\AgentPayouts\Tables\AgentPayoutsTable;
 use App\Models\AgentPayout;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use BackedEnum;
 use UnitEnum;
 
 class AgentPayoutResource extends Resource

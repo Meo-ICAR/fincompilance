@@ -8,11 +8,11 @@ use App\Filament\Resources\AmlAssessments\Pages\ListAmlAssessments;
 use App\Filament\Resources\AmlAssessments\Schemas\AmlAssessmentForm;
 use App\Filament\Resources\AmlAssessments\Tables\AmlAssessmentsTable;
 use App\Models\AmlAssessment;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use BackedEnum;
 use UnitEnum;
 
 class AmlAssessmentResource extends Resource

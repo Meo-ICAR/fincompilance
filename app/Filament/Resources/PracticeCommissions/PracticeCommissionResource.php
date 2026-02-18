@@ -8,11 +8,11 @@ use App\Filament\Resources\PracticeCommissions\Pages\ListPracticeCommissions;
 use App\Filament\Resources\PracticeCommissions\Schemas\PracticeCommissionForm;
 use App\Filament\Resources\PracticeCommissions\Tables\PracticeCommissionsTable;
 use App\Models\PracticeCommission;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use BackedEnum;
 
 class PracticeCommissionResource extends Resource
 {

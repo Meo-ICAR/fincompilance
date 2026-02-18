@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ComuneSeeder extends Seeder implements ToModel, WithStartRow, WithCustomCsvSettings, WithChunkReading
+class ComuneSeeder extends Seeder implements ToModel, WithChunkReading, WithCustomCsvSettings, WithStartRow
 {
     /**
      * Run the database seeds.
@@ -20,8 +20,8 @@ class ComuneSeeder extends Seeder implements ToModel, WithStartRow, WithCustomCs
     {
         $csvPath = storage_path('app/private/Elenco-comuni-italiani.csv');
 
-        if (!file_exists($csvPath)) {
-            $this->command->error('CSV file not found: ' . $csvPath);
+        if (! file_exists($csvPath)) {
+            $this->command->error('CSV file not found: '.$csvPath);
 
             return;
         }
@@ -81,7 +81,7 @@ class ComuneSeeder extends Seeder implements ToModel, WithStartRow, WithCustomCs
     {
         return [
             'delimiter' => ';',
-            'input_encoding' => 'Windows-1252'  // Fondamentale per le "u" e "e" accentate dell'ISTAT
+            'input_encoding' => 'Windows-1252',  // Fondamentale per le "u" e "e" accentate dell'ISTAT
         ];
     }
 

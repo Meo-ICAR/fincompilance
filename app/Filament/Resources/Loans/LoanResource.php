@@ -8,11 +8,11 @@ use App\Filament\Resources\Loans\Pages\ListLoans;
 use App\Filament\Resources\Loans\Schemas\LoanForm;
 use App\Filament\Resources\Loans\Tables\LoansTable;
 use App\Models\Loan;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use BackedEnum;
 
 class LoanResource extends Resource
 {

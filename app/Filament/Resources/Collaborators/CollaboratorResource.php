@@ -8,11 +8,11 @@ use App\Filament\Resources\Collaborators\Pages\ListCollaborators;
 use App\Filament\Resources\Collaborators\Schemas\CollaboratorForm;
 use App\Filament\Resources\Collaborators\Tables\CollaboratorsTable;
 use App\Models\Collaborator;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use BackedEnum;
 
 class CollaboratorResource extends Resource
 {

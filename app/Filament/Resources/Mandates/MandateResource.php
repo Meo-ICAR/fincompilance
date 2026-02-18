@@ -8,11 +8,11 @@ use App\Filament\Resources\Mandates\Pages\ListMandates;
 use App\Filament\Resources\Mandates\Schemas\MandateForm;
 use App\Filament\Resources\Mandates\Tables\MandatesTable;
 use App\Models\Mandate;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use BackedEnum;
 
 class MandateResource extends Resource
 {

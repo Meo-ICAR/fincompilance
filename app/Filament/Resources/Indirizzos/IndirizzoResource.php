@@ -8,11 +8,11 @@ use App\Filament\Resources\Indirizzos\Pages\ListIndirizzos;
 use App\Filament\Resources\Indirizzos\Schemas\IndirizzoForm;
 use App\Filament\Resources\Indirizzos\Tables\IndirizzosTable;
 use App\Models\Indirizzo;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use BackedEnum;
 
 class IndirizzoResource extends Resource
 {

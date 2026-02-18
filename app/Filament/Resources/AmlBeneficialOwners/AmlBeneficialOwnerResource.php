@@ -8,11 +8,11 @@ use App\Filament\Resources\AmlBeneficialOwners\Pages\ListAmlBeneficialOwners;
 use App\Filament\Resources\AmlBeneficialOwners\Schemas\AmlBeneficialOwnerForm;
 use App\Filament\Resources\AmlBeneficialOwners\Tables\AmlBeneficialOwnersTable;
 use App\Models\AmlBeneficialOwner;
+use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use BackedEnum;
 use UnitEnum;
 
 class AmlBeneficialOwnerResource extends Resource
