@@ -6,6 +6,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class PracticeCommissionForm
@@ -14,39 +15,71 @@ class PracticeCommissionForm
     {
         return $schema
             ->components([
-                Select::make('loan_id')
-                    ->relationship('loan', 'id')
-                    ->required(),
-                Select::make('payer_type')
-                    ->options(['MANDANTE' => 'M a n d a n t e', 'CLIENTE' => 'C l i e n t e'])
-                    ->required(),
-                TextInput::make('type')
-                    ->required()
-                    ->default('UPFRONT'),
-                TextInput::make('amount_gross')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('vat_amount')
-                    ->required()
-                    ->numeric()
-                    ->default(0.0),
-                TextInput::make('amount_total')
-                    ->required()
-                    ->numeric(),
-                Select::make('status')
-                    ->options([
-                        'EXPECTED' => 'E x p e c t e d',
-                        'INVOICED' => 'I n v o i c e d',
-                        'PAID' => 'P a i d',
-                        'CANCELLED' => 'C a n c e l l e d',
+                Section::make('Riferimenti e tipo')
+                    ->schema([
+                        Select::make('loan_id')
+                            ->label('Finanziamento')
+                            ->relationship('loan', 'practice_number', fn ($query) => $query->orderBy('practice_number'))
+                            ->required()
+                            ->searchable()
+                            ->preload(),
+                        Select::make('payer_type')
+                            ->label('Pagante')
+                            ->options([
+                                'MANDANTE' => 'Mandante',
+                                'CLIENTE' => 'Cliente',
+                            ])
+                            ->required(),
+                        Select::make('type')
+                            ->label('Tipo')
+                            ->options([
+                                'UPFRONT' => 'Upfront',
+                                'BACKEND' => 'Backend',
+                            ])
+                            ->required()
+                            ->default('UPFRONT'),
                     ])
-                    ->default('EXPECTED')
-                    ->required(),
-                DatePicker::make('accrual_date'),
-                DatePicker::make('payment_date'),
-                TextInput::make('invoice_number'),
-                Toggle::make('is_retrocession_eligible')
-                    ->required(),
+                    ->columns(2),
+                Section::make('Importi')
+                    ->schema([
+                        TextInput::make('amount_gross')
+                            ->label('Imponibile')
+                            ->required()
+                            ->numeric(),
+                        TextInput::make('vat_amount')
+                            ->label('IVA')
+                            ->required()
+                            ->numeric()
+                            ->default(0),
+                        TextInput::make('amount_total')
+                            ->label('Totale')
+                            ->required()
+                            ->numeric(),
+                    ])
+                    ->columns(2),
+                Section::make('Stato e date')
+                    ->schema([
+                        Select::make('status')
+                            ->label('Stato')
+                            ->options([
+                                'EXPECTED' => 'Atteso',
+                                'INVOICED' => 'Fatturato',
+                                'PAID' => 'Pagato',
+                                'CANCELLED' => 'Annullato',
+                            ])
+                            ->default('EXPECTED')
+                            ->required(),
+                        DatePicker::make('accrual_date')
+                            ->label('Data competenza'),
+                        DatePicker::make('payment_date')
+                            ->label('Data pagamento'),
+                        TextInput::make('invoice_number')
+                            ->label('Numero fattura'),
+                        Toggle::make('is_retrocession_eligible')
+                            ->label('Retrocedibile')
+                            ->required(),
+                    ])
+                    ->columns(2),
             ]);
     }
 }

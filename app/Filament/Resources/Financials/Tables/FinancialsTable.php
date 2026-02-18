@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class FinancialsTable
@@ -14,23 +15,46 @@ class FinancialsTable
     {
         return $table
             ->columns([
-                TextColumn::make('abi_code')
-                    ->searchable(),
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->label('Nome')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('abi_code')
+                    ->label('Codice ABI')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('type')
-                    ->badge(),
-                TextColumn::make('capogruppo')
-                    ->searchable(),
+                    ->label('Tipo')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'BANCA' => 'Banca',
+                        'INTERMEDIARIO_106' => 'Intermediario 106',
+                        'IP_IMEL' => 'IP/IMEL',
+                        default => $state,
+                    }),
                 TextColumn::make('status')
-                    ->searchable(),
+                    ->label('Stato')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'OPERATIVO' => 'Operativo',
+                        'SOSPESO' => 'Sospeso',
+                        default => $state,
+                    }),
                 TextColumn::make('data_iscrizione')
+                    ->label('Data iscrizione')
                     ->date()
                     ->sortable(),
+                TextColumn::make('capogruppo')
+                    ->label('Capogruppo')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('data_cancellazione')
+                    ->label('Data cancellazione')
                     ->date()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
+                    ->label('Creato il')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -39,8 +63,22 @@ class FinancialsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('name')
+            ->defaultPaginationPageOption(25)
             ->filters([
-                //
+                SelectFilter::make('type')
+                    ->label('Tipo')
+                    ->options([
+                        'BANCA' => 'Banca',
+                        'INTERMEDIARIO_106' => 'Intermediario 106',
+                        'IP_IMEL' => 'IP/IMEL',
+                    ]),
+                SelectFilter::make('status')
+                    ->label('Stato')
+                    ->options([
+                        'OPERATIVO' => 'Operativo',
+                        'SOSPESO' => 'Sospeso',
+                    ]),
             ])
             ->recordActions([
                 EditAction::make(),

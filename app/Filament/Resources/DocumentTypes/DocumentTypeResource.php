@@ -25,6 +25,8 @@ class DocumentTypeResource extends Resource
 
     protected static ?string $navigationLabel = 'Tipi documento';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function form(Schema $schema): Schema
     {
         return DocumentTypeForm::configure($schema);

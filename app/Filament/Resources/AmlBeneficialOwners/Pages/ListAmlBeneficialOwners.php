@@ -5,6 +5,7 @@ namespace App\Filament\Resources\AmlBeneficialOwners\Pages;
 use App\Filament\Resources\AmlBeneficialOwners\AmlBeneficialOwnerResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListAmlBeneficialOwners extends ListRecords
 {
@@ -15,5 +16,10 @@ class ListAmlBeneficialOwners extends ListRecords
         return [
             CreateAction::make(),
         ];
+    }
+
+    public function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with(['amlAssessment.customer']);
     }
 }

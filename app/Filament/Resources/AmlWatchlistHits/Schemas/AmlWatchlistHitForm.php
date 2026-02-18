@@ -15,18 +15,31 @@ class AmlWatchlistHitForm
         return $schema
             ->components([
                 Select::make('aml_assessment_id')
-                    ->relationship('amlAssessment', 'id')
-                    ->required(),
+                    ->label('Valutazione AML')
+                    ->relationship(
+                        'amlAssessment',
+                        'id',
+                        fn ($query) => $query->with('customer')->orderBy('id')
+                    )
+                    ->getOptionLabelFromRecordUsing(fn ($record) => "Val. #{$record->id} – {$record->customer?->ragione_sociale_o_cognome}")
+                    ->required()
+                    ->searchable()
+                    ->preload(),
                 TextInput::make('list_name')
+                    ->label('Nome lista')
                     ->required(),
                 TextInput::make('match_type')
+                    ->label('Tipo di match')
                     ->required(),
                 Textarea::make('details')
+                    ->label('Dettagli')
                     ->required()
                     ->columnSpanFull(),
                 Toggle::make('is_false_positive')
+                    ->label('Falso positivo')
                     ->required(),
                 Textarea::make('resolution_notes')
+                    ->label('Note risoluzione')
                     ->columnSpanFull(),
             ]);
     }

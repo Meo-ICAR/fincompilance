@@ -15,58 +15,40 @@ class ComunesTable
     {
         return $table
             ->columns([
-                TextColumn::make('codice_regione')
-                    ->searchable(),
-                TextColumn::make('codice_unita_territoriale')
-                    ->searchable(),
-                TextColumn::make('codice_provincia_storico')
-                    ->searchable(),
-                TextColumn::make('progressivo_comune')
-                    ->searchable(),
-                TextColumn::make('codice_comune_alfanumerico')
-                    ->searchable(),
                 TextColumn::make('denominazione')
-                    ->searchable(),
-                TextColumn::make('denominazione_italiano')
-                    ->searchable(),
-                TextColumn::make('denominazione_altra_lingua')
-                    ->searchable(),
-                TextColumn::make('codice_ripartizione_geografica')
-                    ->searchable(),
-                TextColumn::make('ripartizione_geografica')
-                    ->searchable(),
-                TextColumn::make('denominazione_regione')
-                    ->searchable(),
-                TextColumn::make('denominazione_unita_territoriale')
-                    ->searchable(),
-                TextColumn::make('tipologia_unita_territoriale')
-                    ->searchable(),
-                IconColumn::make('capoluogo_provincia')
-                    ->boolean(),
+                    ->label('Comune')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('sigla_automobilistica')
-                    ->searchable(),
-                TextColumn::make('codice_comune_numerico')
-                    ->searchable(),
-                TextColumn::make('codice_comune_110_province')
-                    ->searchable(),
-                TextColumn::make('codice_comune_107_province')
-                    ->searchable(),
-                TextColumn::make('codice_comune_103_province')
-                    ->searchable(),
+                    ->label('Provincia')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('denominazione_regione')
+                    ->label('Regione')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('codice_comune_alfanumerico')
+                    ->label('Cod. alfanumerico')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('codice_catastale')
-                    ->searchable(),
-                TextColumn::make('codice_nuts1_2021')
-                    ->searchable(),
-                TextColumn::make('codice_nuts2_2021')
-                    ->searchable(),
-                TextColumn::make('codice_nuts3_2021')
-                    ->searchable(),
-                TextColumn::make('codice_nuts1_2024')
-                    ->searchable(),
-                TextColumn::make('codice_nuts2_2024')
-                    ->searchable(),
+                    ->label('Cod. catastale')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('capoluogo_provincia')
+                    ->label('Capoluogo')
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('codice_regione')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('codice_unita_territoriale')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('denominazione_unita_territoriale')
+                    ->label('Unità territoriale')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('codice_nuts3_2024')
-                    ->searchable(),
+                    ->label('NUTS3')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -76,8 +58,9 @@ class ComunesTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('denominazione')
+            ->defaultPaginationPageOption(25)
             ->filters([
-                //
             ])
             ->recordActions([
                 EditAction::make(),

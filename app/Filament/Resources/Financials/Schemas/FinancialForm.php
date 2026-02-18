@@ -14,22 +14,33 @@ class FinancialForm
         return $schema
             ->components([
                 TextInput::make('abi_code')
+                    ->label('Codice ABI')
                     ->required(),
                 TextInput::make('name')
+                    ->label('Nome')
                     ->required(),
                 Select::make('type')
+                    ->label('Tipo')
                     ->options([
-                        'BANCA' => 'B a n c a',
-                        'INTERMEDIARIO_106' => 'I n t e r m e d i a r i o 106',
-                        'IP_IMEL' => 'I p  i m e l',
+                        'BANCA' => 'Banca',
+                        'INTERMEDIARIO_106' => 'Intermediario 106',
+                        'IP_IMEL' => 'IP/IMEL',
                     ])
                     ->required(),
-                TextInput::make('capogruppo'),
-                TextInput::make('status')
+                TextInput::make('capogruppo')
+                    ->label('Capogruppo'),
+                Select::make('status')
+                    ->label('Stato')
+                    ->options([
+                        'OPERATIVO' => 'Operativo',
+                        'SOSPESO' => 'Sospeso',
+                    ])
                     ->required()
                     ->default('OPERATIVO'),
-                DatePicker::make('data_iscrizione'),
-                DatePicker::make('data_cancellazione'),
+                DatePicker::make('data_iscrizione')
+                    ->label('Data iscrizione'),
+                DatePicker::make('data_cancellazione')
+                    ->label('Data cancellazione'),
             ]);
     }
 }

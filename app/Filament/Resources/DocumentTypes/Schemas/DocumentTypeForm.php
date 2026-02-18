@@ -5,6 +5,7 @@ namespace App\Filament\Resources\DocumentTypes\Schemas;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class DocumentTypeForm
@@ -13,39 +14,64 @@ class DocumentTypeForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required(),
-                TextInput::make('slug')
-                    ->required(),
-                Select::make('scope')
-                    ->options([
-                        'AGENT' => 'A g e n t',
-                        'CUSTOMER' => 'C u s t o m e r',
-                        'COMPANY' => 'C o m p a n y',
-                        'MANDATE' => 'M a n d a t e',
+                Section::make('Identificazione')
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Nome')
+                            ->required(),
+                        TextInput::make('slug')
+                            ->label('Slug')
+                            ->required(),
+                        Select::make('scope')
+                            ->label('Ambito')
+                            ->options([
+                                'AGENT' => 'Agente',
+                                'CUSTOMER' => 'Cliente',
+                                'COMPANY' => 'Azienda',
+                                'MANDATE' => 'Mandato',
+                            ])
+                            ->required(),
+                        TextInput::make('category')
+                            ->label('Categoria'),
+                        TextInput::make('oam_mapping_code')
+                            ->label('Codice mapping OAM'),
                     ])
-                    ->required(),
-                TextInput::make('category'),
-                Toggle::make('is_mandatory')
-                    ->required(),
-                Toggle::make('requires_expiration_date')
-                    ->required(),
-                Toggle::make('requires_number')
-                    ->required(),
-                Toggle::make('requires_issuer')
-                    ->required(),
-                TextInput::make('default_validity_months')
-                    ->numeric(),
-                TextInput::make('alert_days_before_expiry')
-                    ->required()
-                    ->numeric()
-                    ->default(30),
-                TextInput::make('allowed_mime_types'),
-                Toggle::make('is_sensitive')
-                    ->required(),
-                TextInput::make('oam_mapping_code'),
-                Toggle::make('is_active')
-                    ->required(),
+                    ->columns(2),
+                Section::make('Requisiti')
+                    ->schema([
+                        Toggle::make('is_mandatory')
+                            ->label('Obbligatorio')
+                            ->required(),
+                        Toggle::make('requires_expiration_date')
+                            ->label('Richiede data scadenza')
+                            ->required(),
+                        Toggle::make('requires_number')
+                            ->label('Richiede numero')
+                            ->required(),
+                        Toggle::make('requires_issuer')
+                            ->label('Richiede emittente')
+                            ->required(),
+                        TextInput::make('default_validity_months')
+                            ->label('Validità default (mesi)')
+                            ->numeric(),
+                        TextInput::make('alert_days_before_expiry')
+                            ->label('Giorni alert prima scadenza')
+                            ->required()
+                            ->numeric()
+                            ->default(30),
+                        TextInput::make('allowed_mime_types')
+                            ->label('MIME types consentiti'),
+                        Toggle::make('is_sensitive')
+                            ->label('Dato sensibile (GDPR)')
+                            ->required(),
+                    ])
+                    ->columns(2),
+                Section::make('Stato')
+                    ->schema([
+                        Toggle::make('is_active')
+                            ->label('Attivo')
+                            ->required(),
+                    ]),
             ]);
     }
 }

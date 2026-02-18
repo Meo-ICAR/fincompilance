@@ -15,25 +15,39 @@ class AmlBeneficialOwnersTable
     {
         return $table
             ->columns([
-                TextColumn::make('amlAssessment.id')
-                    ->searchable(),
-                TextColumn::make('nome')
-                    ->searchable(),
-                TextColumn::make('cognome')
-                    ->searchable(),
-                TextColumn::make('codice_fiscale')
-                    ->searchable(),
-                TextColumn::make('data_nascita')
-                    ->date()
+                TextColumn::make('amlAssessment.customer.ragione_sociale_o_cognome')
+                    ->label('Cliente (valutazione)')
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('comune_nascita')
-                    ->searchable(),
+                TextColumn::make('cognome')
+                    ->label('Cognome')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('nome')
+                    ->label('Nome')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('codice_fiscale')
+                    ->label('Cod. fiscale')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('ownership_percentage')
+                    ->label('% partecipazione')
                     ->numeric()
                     ->sortable(),
+                TextColumn::make('data_nascita')
+                    ->label('Data nascita')
+                    ->date()
+                    ->sortable(),
                 IconColumn::make('is_indirect_ownership')
+                    ->label('Indiretta')
                     ->boolean(),
+                TextColumn::make('comune_nascita')
+                    ->label('Comune nascita')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
+                    ->label('Creato il')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -42,8 +56,9 @@ class AmlBeneficialOwnersTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('cognome')
+            ->defaultPaginationPageOption(25)
             ->filters([
-                //
             ])
             ->recordActions([
                 EditAction::make(),
