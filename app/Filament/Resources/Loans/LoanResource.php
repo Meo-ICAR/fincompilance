@@ -13,14 +13,19 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class LoanResource extends Resource
 {
     protected static ?string $model = Loan::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBanknotes;
 
     protected static ?string $navigationLabel = 'Finanziamenti';
+
+    protected static ?string $recordTitleAttribute = 'practice_number';
+
+    protected static UnitEnum|string|null $navigationGroup = 'Operatività';
 
     public static function form(Schema $schema): Schema
     {

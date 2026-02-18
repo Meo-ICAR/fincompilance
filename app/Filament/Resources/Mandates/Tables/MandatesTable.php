@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 
 class MandatesTable
@@ -15,20 +16,27 @@ class MandatesTable
     {
         return $table
             ->columns([
-                TextColumn::make('financial_id')
-                    ->numeric()
+                TextColumn::make('financialInstitution.name')
+                    ->label('Istituto')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('codice_mandato_interno')
-                    ->searchable(),
+                    ->label('Cod. mandato')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('start_date')
+                    ->label('Data inizio')
                     ->date()
                     ->sortable(),
                 TextColumn::make('end_date')
+                    ->label('Data fine')
                     ->date()
                     ->sortable(),
                 IconColumn::make('is_active')
+                    ->label('Attivo')
                     ->boolean(),
                 TextColumn::make('created_at')
+                    ->label('Creato il')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -37,8 +45,11 @@ class MandatesTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('start_date', 'desc')
+            ->defaultPaginationPageOption(25)
             ->filters([
-                //
+                TernaryFilter::make('is_active')
+                    ->label('Attivo'),
             ])
             ->recordActions([
                 EditAction::make(),

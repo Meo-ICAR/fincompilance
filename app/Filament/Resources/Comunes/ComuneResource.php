@@ -19,9 +19,9 @@ class ComuneResource extends Resource
 {
     protected static ?string $model = Comune::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedMapPin;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Elenchi';
+    protected static UnitEnum|string|null $navigationGroup = 'OAM / Elenchi';
 
     protected static ?string $navigationLabel = 'Comuni';
 

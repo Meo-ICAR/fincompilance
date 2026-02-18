@@ -19,17 +19,13 @@ class OamResource extends Resource
 {
     protected static ?string $model = Oam::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Elenchi';
+    protected static UnitEnum|string|null $navigationGroup = 'OAM / Elenchi';
 
     protected static ?string $navigationLabel = 'Albo OAM';
 
-    // protected static ?string $modelLabel = 'Istituti';
-
-    // protected static ?string $pluralModelLabel = 'Istituti';
-
-    // protected static ?int $navigationSort = 8;
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
     {

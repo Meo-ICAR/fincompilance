@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Collaborators\Pages;
 use App\Filament\Resources\Collaborators\CollaboratorResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListCollaborators extends ListRecords
 {
@@ -15,5 +16,10 @@ class ListCollaborators extends ListRecords
         return [
             CreateAction::make(),
         ];
+    }
+
+    public function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with('company');
     }
 }

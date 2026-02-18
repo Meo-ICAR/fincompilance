@@ -19,7 +19,7 @@ class AmlBeneficialOwnerResource extends Resource
 {
     protected static ?string $model = AmlBeneficialOwner::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
     protected static UnitEnum|string|null $navigationGroup = 'AML';
 

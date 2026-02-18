@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Loans\Pages;
 use App\Filament\Resources\Loans\LoanResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListLoans extends ListRecords
 {
@@ -15,5 +16,10 @@ class ListLoans extends ListRecords
         return [
             CreateAction::make(),
         ];
+    }
+
+    public function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with(['customer', 'agent']);
     }
 }

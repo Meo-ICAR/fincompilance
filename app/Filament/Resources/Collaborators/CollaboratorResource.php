@@ -13,14 +13,17 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class CollaboratorResource extends Resource
 {
     protected static ?string $model = Collaborator::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserCircle;
 
     protected static ?string $navigationLabel = 'Agenti';
+
+    protected static UnitEnum|string|null $navigationGroup = 'Anagrafiche';
 
     protected static ?string $recordTitleAttribute = 'name';
 

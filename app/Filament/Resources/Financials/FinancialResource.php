@@ -19,9 +19,9 @@ class FinancialResource extends Resource
 {
     protected static ?string $model = Financial::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Elenchi';
+    protected static UnitEnum|string|null $navigationGroup = 'OAM / Elenchi';
 
     protected static ?string $navigationLabel = 'Banche';
 

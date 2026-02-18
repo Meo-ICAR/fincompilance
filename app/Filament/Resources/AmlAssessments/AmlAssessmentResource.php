@@ -19,11 +19,13 @@ class AmlAssessmentResource extends Resource
 {
     protected static ?string $model = AmlAssessment::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShieldCheck;
 
     protected static UnitEnum|string|null $navigationGroup = 'AML';
 
     protected static ?string $navigationLabel = 'Valutazioni AML';
+
+    protected static ?string $recordTitleAttribute = 'id';
 
     public static function form(Schema $schema): Schema
     {

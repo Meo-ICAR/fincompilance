@@ -19,11 +19,11 @@ class DocumentTypeResource extends Resource
 {
     protected static ?string $model = DocumentType::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentDuplicate;
 
-    protected static UnitEnum|string|null $navigationGroup = 'Elenchi';
+    protected static UnitEnum|string|null $navigationGroup = 'OAM / Elenchi';
 
-    protected static ?string $navigationLabel = 'Documenti';
+    protected static ?string $navigationLabel = 'Tipi documento';
 
     public static function form(Schema $schema): Schema
     {

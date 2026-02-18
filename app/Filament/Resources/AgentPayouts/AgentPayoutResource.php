@@ -19,9 +19,9 @@ class AgentPayoutResource extends Resource
 {
     protected static ?string $model = AgentPayout::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCurrencyEuro;
 
-    protected static UnitEnum|string|null $navigationGroup = 'AML';
+    protected static UnitEnum|string|null $navigationGroup = 'Operatività';
 
     protected static ?string $navigationLabel = 'Payout Agenti';
 

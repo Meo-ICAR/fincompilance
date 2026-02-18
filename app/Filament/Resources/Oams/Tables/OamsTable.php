@@ -15,27 +15,41 @@ class OamsTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('autorizzato_ad_operare')
-                    ->searchable(),
-                TextColumn::make('persona')
-                    ->searchable(),
+                    ->label('Nome')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('codice_fiscale')
-                    ->searchable(),
-                TextColumn::make('domicilio_sede_legale')
-                    ->searchable(),
-                TextColumn::make('elenco')
-                    ->searchable(),
+                    ->label('Cod. fiscale')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('numero_iscrizione')
-                    ->searchable(),
+                    ->label('N. iscrizione')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('data_iscrizione')
+                    ->label('Data iscrizione')
                     ->date()
                     ->sortable(),
                 TextColumn::make('stato')
-                    ->searchable(),
-                TextColumn::make('data_stato')
-                    ->date()
+                    ->label('Stato')
+                    ->badge()
                     ->sortable(),
+                TextColumn::make('data_stato')
+                    ->label('Data stato')
+                    ->date()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('autorizzato_ad_operare')
+                    ->label('Autorizzato')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('persona')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('domicilio_sede_legale')
+                    ->label('Sede legale')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('elenco')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -45,8 +59,9 @@ class OamsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('name')
+            ->defaultPaginationPageOption(25)
             ->filters([
-                //
             ])
             ->recordActions([
                 EditAction::make(),

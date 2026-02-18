@@ -19,7 +19,7 @@ class AmlWatchlistHitResource extends Resource
 {
     protected static ?string $model = AmlWatchlistHit::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedExclamationTriangle;
 
     protected static UnitEnum|string|null $navigationGroup = 'AML';
 

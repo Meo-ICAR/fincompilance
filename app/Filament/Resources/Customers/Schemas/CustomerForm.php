@@ -14,20 +14,34 @@ class CustomerForm
         return $schema
             ->components([
                 Select::make('user_id')
+                    ->label('Utente')
                     ->relationship('user', 'name')
-                    ->required(),
-                TextInput::make('type')
+                    ->required()
+                    ->searchable()
+                    ->preload(),
+                Select::make('type')
+                    ->label('Tipo')
+                    ->options([
+                        'PF' => 'Persona fisica',
+                        'PG' => 'Persona giuridica',
+                    ])
                     ->required()
                     ->default('PF'),
                 TextInput::make('ragione_sociale_o_cognome')
+                    ->label('Ragione sociale / Cognome')
                     ->required(),
-                TextInput::make('nome'),
+                TextInput::make('nome')
+                    ->label('Nome'),
                 TextInput::make('codice_fiscale')
+                    ->label('Codice fiscale')
                     ->required(),
-                TextInput::make('partita_iva'),
+                TextInput::make('partita_iva')
+                    ->label('Partita IVA'),
                 Toggle::make('is_pep')
+                    ->label('PEP (persona politicamente esposta)')
                     ->required(),
                 Toggle::make('is_sanctioned')
+                    ->label('Sanzionato')
                     ->required(),
             ]);
     }
